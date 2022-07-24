@@ -1,23 +1,49 @@
-import logo from './logo.svg';
 import './App.css';
 
+import { useState } from 'react';
+
+import rates from './data.js';
+
 function App() {
+  const [initialValue, setInitialValue] = useState(0);
+  const [result, setResult] = useState(0);
+
+  const dollar = rates.USD;
+
+  // for (const indice in rates) {
+  //   console.log(`${indice}: ${rates[indice]}`);
+  // }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <h1>EUR to USD</h1>
+      <input
+        type='number'
+        required
+        value={initialValue}
+        placeholder='Veuillez saisir un nombre'
+        onChange={(e) => setInitialValue(e.target.value)}
+      />
+      €
+      <br />
+      <button
+        onClick={() => {
+          setResult(dollar * initialValue);
+        }}
+      >
+        Convertir
+      </button>
+      <p>{result}</p>
+      <br />
+      {/* <input
+        type='number'
+        required
+        value={result}
+        placeholder='Veuillez saisir un nombre'
+        onChange={(e) => {
+          setResult(e.target.value);
+        }}
+      /> */}
     </div>
   );
 }
